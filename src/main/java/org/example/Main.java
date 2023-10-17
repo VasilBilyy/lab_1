@@ -3,6 +3,7 @@ import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
+import java.util.Iterator;
 
 public class Main {
     public static void main(String[] args) {
@@ -19,6 +20,8 @@ public class Main {
         fill(linkedList, count, "LinkedList");
         random_access(arrayList, count, "ArrayList");
         random_access(linkedList, count, "LinkedList");
+        sequential_access(arrayList, "ArrayList");
+        sequential_access(linkedList, "LinkedList");
     }
 
     //Заповнення масиву
@@ -41,5 +44,16 @@ public class Main {
 
         System.out.println(list.get(random.nextInt(count)));
         System.out.printf("Random access in %s: %s\n", listType, System.currentTimeMillis() - time);
+    }
+
+    //Sequential Access (доступ по ітератору)
+    private static void sequential_access(List<Integer> list, String listType){
+        long time = System.currentTimeMillis();
+        Iterator<Integer> itr = list.iterator();
+        while (itr.hasNext()){
+            Integer elm = itr.next();
+            //System.out.println(elm);
+        }
+        System.out.printf("Sequental access in %s: %s\n", listType, System.currentTimeMillis() - time);
     }
 }
