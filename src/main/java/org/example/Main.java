@@ -17,6 +17,8 @@ public class Main {
 
         fill(arrayList, count, "ArrayList");
         fill(linkedList, count, "LinkedList");
+        random_access(arrayList, count, "ArrayList");
+        random_access(linkedList, count, "LinkedList");
     }
 
     //Заповнення масиву
@@ -30,5 +32,14 @@ public class Main {
         }
 
         System.out.printf("Fill %s: %s\n", listType, System.currentTimeMillis() - time);
+    }
+
+    //Random Access (доступ за індексом)
+    private static void random_access(List<Integer> list, int count, String listType){
+        long time = System.currentTimeMillis();
+        Random random = new Random();
+
+        System.out.println(list.get(random.nextInt(count)));
+        System.out.printf("Random access in %s: %s\n", listType, System.currentTimeMillis() - time);
     }
 }
