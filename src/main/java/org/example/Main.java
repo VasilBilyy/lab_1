@@ -48,7 +48,7 @@ public class Main {
         long time = System.currentTimeMillis();
         Random random = new Random();
 
-        System.out.println(list.get(random.nextInt(count)));
+        //System.out.println(list.get(random.nextInt(count)));
         System.out.printf("Random access in %s: %s\n", listType, System.currentTimeMillis() - time);
     }
 
