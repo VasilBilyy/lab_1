@@ -22,6 +22,11 @@ public class Main {
         random_access(linkedList, count, "LinkedList");
         sequential_access(arrayList, "ArrayList");
         sequential_access(linkedList, "LinkedList");
+        insert_in_begin(arrayList, insertCount, "ArrayList");
+        insert_in_begin(linkedList, insertCount, "LinkedList");
+        insert_in_end(arrayList, insertCount, "ArrayList");
+        insert_in_end(linkedList, insertCount, "LinkedList");
+
     }
 
     //Заповнення масиву
@@ -55,5 +60,30 @@ public class Main {
             //System.out.println(elm);
         }
         System.out.printf("Sequental access in %s: %s\n", listType, System.currentTimeMillis() - time);
+    }
+
+    //Вставка на початок списку
+    private static void insert_in_begin(List<Integer> list, int insertCount, String listType){
+        long time = System.currentTimeMillis();
+        Random random = new Random();
+
+        for (int i = 0; i < insertCount; i++){
+            //System.out.println(list.get(i));
+            list.add(i, random.nextInt(insertCount));
+            //System.out.println(list.get(i));
+        }
+        System.out.printf("Insert in the beginning of %s: %s\n", listType, System.currentTimeMillis() - time);
+    }
+
+    //Вставка у кінець списку
+    private static void insert_in_end(List<Integer> list, int insertCount, String listType){
+        long time = System.currentTimeMillis();
+        Random random = new Random();
+
+        for (int i = 0; i < insertCount; i++){
+            list.add(random.nextInt(insertCount));
+        }
+
+        System.out.printf("Insert in the end of %s: %s\n", listType, System.currentTimeMillis() - time);
     }
 }
