@@ -70,7 +70,7 @@ public class Main {
 
         for (int i = 0; i < insertCount; i++){
             //System.out.println(list.get(i));
-            list.add(0, random.nextInt(insertCount));
+            list.add(i, random.nextInt(insertCount));
             //System.out.println(list.get(i));
         }
         System.out.printf("Insert in the beginning of %s: %s\n", listType, System.currentTimeMillis() - time);
@@ -92,10 +92,11 @@ public class Main {
     private static void insert_in_middle(List<Integer> list, int insertCount, String listType){
         long time = System.currentTimeMillis();
         int start_position = list.size() / 2 - insertCount / 2;
+        int final_position = start_position + insertCount;
         Random random = new Random();
 
-        for (int i = 0; i< insertCount; i++){
-            list.add(start_position + i, random.nextInt(insertCount));
+        for (int i = start_position; i< final_position; i++){
+            list.add(i, random.nextInt(insertCount));
         }
 
         System.out.printf("Insert in the middle of %s: %s\n", listType, System.currentTimeMillis() - time);
