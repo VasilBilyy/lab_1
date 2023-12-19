@@ -1,19 +1,103 @@
 package org.example;
+import java.util.ArrayList;
+import java.util.LinkedList;
+import java.util.List;
+import java.util.Random;
+import java.util.Iterator;
 
-// Press Shift twice to open the Search Everywhere dialog and type `show whitespaces`,
-// then press Enter. You can now see whitespace characters in your code.
 public class Main {
     public static void main(String[] args) {
-        // Press Alt+Enter with your caret at the highlighted text to see how
-        // IntelliJ IDEA suggests fixing it.
-        System.out.printf("Hello and welcome!");
+        List<Integer> arrayList = new ArrayList<>();
+        List<Integer> linkedList = new LinkedList<>();
 
-        // Press Shift+F10 or click the green arrow button in the gutter to run the code.
-        for (int i = 1; i <= 5; i++) {
+        int count = 100000;
+        int insertCount = 1000;
 
-            // Press Shift+F9 to start debugging your code. We have set one breakpoint
-            // for you, but you can always add more by pressing Ctrl+F8.
-            System.out.println("i = " + i);
+        System.out.println("Кількість елементів у списку: " + count);
+        System.out.println("Число введених елементів: " + insertCount);
+
+        fill(arrayList, count, "ArrayList");
+        fill(linkedList, count, "LinkedList");
+        random_access(arrayList, count, "ArrayList");
+        random_access(linkedList, count, "LinkedList");
+        sequential_access(arrayList, "ArrayList");
+        sequential_access(linkedList, "LinkedList");
+        insert_in_begin(arrayList, insertCount, "ArrayList");
+        insert_in_begin(linkedList, insertCount, "LinkedList");
+        insert_in_end(arrayList, insertCount, "ArrayList");
+        insert_in_end(linkedList, insertCount, "LinkedList");
+        insert_in_middle(arrayList, insertCount, "ArrayList");
+        insert_in_middle(linkedList, insertCount, "LinkedList");
+    }
+
+    //Заповнення масиву
+    private static void fill(List<Integer> list, int count, String listType) {
+        long time = System.currentTimeMillis();
+        Random random = new Random();
+
+        for (int i = 0; i < count; i++){
+            list.add(random.nextInt(count + 1));
+            //System.out.print(list.get(i)+"\n");
         }
+
+        System.out.printf("Fill %s: %s\n", listType, System.currentTimeMillis() - time);
+    }
+
+    //Random Access (доступ за індексом)
+    private static void random_access(List<Integer> list, int count, String listType){
+        long time = System.currentTimeMillis();
+        Random random = new Random();
+
+        //System.out.println(list.get(random.nextInt(count)));
+        System.out.printf("Random access in %s: %s\n", listType, System.currentTimeMillis() - time);
+    }
+
+    //Sequential Access (доступ по ітератору)
+    private static void sequential_access(List<Integer> list, String listType){
+        long time = System.currentTimeMillis();
+        Iterator<Integer> itr = list.iterator();
+        while (itr.hasNext()){
+            Integer elm = itr.next();
+            //System.out.println(elm);
+        }
+        System.out.printf("Sequental access in %s: %s\n", listType, System.currentTimeMillis() - time);
+    }
+
+    //Вставка на початок списку
+    private static void insert_in_begin(List<Integer> list, int insertCount, String listType){
+        long time = System.currentTimeMillis();
+        Random random = new Random();
+
+        for (int i = 0; i < insertCount; i++){
+            //System.out.println(list.get(i));
+            list.add(0, random.nextInt(insertCount));
+            //System.out.println(list.get(i));
+        }
+        System.out.printf("Insert in the beginning of %s: %s\n", listType, System.currentTimeMillis() - time);
+    }
+
+    //Вставка у кінець списку
+    private static void insert_in_end(List<Integer> list, int insertCount, String listType){
+        long time = System.currentTimeMillis();
+        Random random = new Random();
+
+        for (int i = 0; i < insertCount; i++){
+            list.add(random.nextInt(insertCount));
+        }
+
+        System.out.printf("Insert in the end of %s: %s\n", listType, System.currentTimeMillis() - time);
+    }
+
+    //Вставка до середини списку
+    private static void insert_in_middle(List<Integer> list, int insertCount, String listType){
+        long time = System.currentTimeMillis();
+        int start_position = list.size() / 2 - insertCount / 2;
+        Random random = new Random();
+
+        for (int i = 0; i< insertCount; i++){
+            list.add(start_position + i, random.nextInt(insertCount));
+        }
+
+        System.out.printf("Insert in the middle of %s: %s\n", listType, System.currentTimeMillis() - time);
     }
 }
